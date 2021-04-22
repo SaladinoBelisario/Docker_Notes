@@ -12,7 +12,8 @@ To verify that docker can talk with CLI:
 > docker version
 
 ### Images vs Containers
-Images are the binaries containing all the libraries and resources.
+Images are the binaries containing all the libraries and resources and the 
+metadata for running it.
 
 Containers are the instances containing and image.
 
@@ -100,3 +101,24 @@ DNS is the key for easy inter-container communications.
 
 Forget about IP's, the Addresses can change in every deploy, **the solution 
 is to use names**. To make this more easy you need to use your **custom networks**.
+
+### DNS Round Robin
+
+Next we're going to view an example of Networking with docker. Since we can have
+multiple containers responding to the same DNS record we're going to see how 
+to use the Round Robin technique.
+
+Create a new network:
+> docker network create [network_name]
+
+Create 2 detached containers:
+> docker container -d --net [network_name] --net-alias [network_alias] [image:version]
+
+Make sure you have your instances in the same network:
+> docker container ls
+
+From another container(linux distribution) lookup for the alias created for the network:
+> docker container run --rm --net [network_name] [another_container] nslookup [network_alias]
+
+This will tell our linux distribution in the container to lookup for the instances that 
+responses to such alias.
