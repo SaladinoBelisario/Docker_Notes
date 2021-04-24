@@ -122,3 +122,51 @@ From another container(linux distribution) lookup for the alias created for the 
 
 This will tell our linux distribution in the container to lookup for the instances that 
 responses to such alias.
+
+## **Container Images**
+
+Images are not complete OS, there has no kernel or kernel modules, it contains 
+only the binaries necessary for running your application. The kernel it's provided
+by the Host.
+
+### Image layers:
+
+We can show the layers for a given image with:
+
+> docker image history [image_name]
+
+When you create an image docker will put together all the dependencies necessary
+for you to use the image, so the image it's not only the original dependencies 
+(for example your database image). In this way we don't need to download two times 
+the same layer. Each layer it's uniquely identified and stored in the host.
+
+In order to retrieve the metadata from the image we run
+
+> docker image inspect [image_name]
+
+### Image tagging and uploading
+
+Tags in docker are similar to git tags, it's only a pointer pointing to an 
+specific point in the history. 
+
+Latest it's only the default tag, not really the latest version of the image.
+
+In order to upload our images we use (you'll need to log in on docker CLI first):
+
+> docker image push [image_name]
+
+### Building images
+
+We can make automation stuff with docker using the dockerfiles to deploy, configure
+and modify our containers/images.
+
+> docker build -f [some-dockerfile]
+
+The -f flag it's for specifying other file than the default
+Dockerfile.
+
+**Dockerfiles basics**
+
+If we need to construct a custom image with a given configuration:
+
+> docker image build -t [given_name] .
