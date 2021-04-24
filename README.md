@@ -170,3 +170,21 @@ Dockerfile.
 If we need to construct a custom image with a given configuration:
 
 > docker image build -t [given_name] .
+
+## Container lifetimes and Persistent Data
+
+Containers are **usually** immutable and ephemeral, docker give us features to ensure
+the "separation of concerns".
+
+Containers are not by default friendly for persistent data (they're immutable),
+so docker give us two ways to deal with this situation: **Volumes and Bind Mounts**.
+
+### Volumes:
+
+Volumes are detached from the container, so if you delete or stop the container, 
+the volume still contains your data.
+
+### Bind Mounting:
+
+Can only be done with in runtime deployment, so you can't use this feature with 
+Dockerfile.
