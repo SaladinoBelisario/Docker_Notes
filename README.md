@@ -184,7 +184,35 @@ so docker give us two ways to deal with this situation: **Volumes and Bind Mount
 Volumes are detached from the container, so if you delete or stop the container, 
 the volume still contains your data.
 
+If you want to remove all the volumes created use:
+
+> docker volume prune
+
 ### Bind Mounting:
 
 Can only be done with in runtime deployment, so you can't use this feature with 
 Dockerfile.
+
+Bind mounting tells to docker to link a directory in the host to a path in the 
+container, every change made in the host it's reflected in the container.
+
+## Docker Compose
+
+**Why?** 
+* Configure relationships between containers
+* Save our docker container run setting in an easy-to-read file
+* Create one-liner developer environment startups
+
+Docker compose does the same as you have done with docker with the previous
+commands, but you can automate the tasks ina YAML script and integrate it with
+your local development environment or deploy for production with Swarm.
+
+Compose it's **NOT** a production-grade tool but ideal for local development
+and test. Compose it's a different executable rather than docker, you need
+to invoke _docker-compose_.
+
+If all your projects had a **Dockerfile** and a **docker-compose.yml** then
+"new developer onboarding" would be:
+
+> git clone some_repository
+> docker-compose up
