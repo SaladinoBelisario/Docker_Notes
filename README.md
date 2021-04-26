@@ -216,3 +216,7 @@ If all your projects had a **Dockerfile** and a **docker-compose.yml** then
 
 > git clone some_repository
 > docker-compose up
+
+**In Dockerfiles every command you use with RUN its executed with root user**
+
+## Swarm Intro
