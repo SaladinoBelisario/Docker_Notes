@@ -220,3 +220,31 @@ If all your projects had a **Dockerfile** and a **docker-compose.yml** then
 **In Dockerfiles every command you use with RUN its executed with root user**
 
 ## Swarm Intro
+
+One of the main problems that now we have are:
+* How do we automate container lifecycle?
+* How can we easily scale out/in/up/down?
+* How we can ensure our containers are re-created if they fail?
+* How we can replace container without downtime(blue-green deploy)?
+* How we can track/control containers?
+* How we can ensure only trusted servers run our containers?
+* How we can store passwords, secrets, etc and get them to the
+right container (and only to that container)?
+  
+### Built-in Orchestration 
+Swarm it's a built-in clustering solution that comes with Docker.
+**NOT related with Swarm "classic" (pre-1.12)**.
+**NOT enable by default**.
+
+**To init a new swarm**
+> docker swarm init
+
+In swarm the service command substitutes the run command in docker.
+> docker service
+ 
+**Use _--detach true_  if you're using automation or shell scripts to get things done.**
+
+### Docker Machine
+In order to allocate swarm resources you'd need to use the _docker-machine_ along
+with VirtualBox.
+> docker-machine create node1
