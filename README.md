@@ -248,3 +248,26 @@ In swarm the service command substitutes the run command in docker.
 In order to allocate swarm resources you'd need to use the _docker-machine_ along
 with VirtualBox.
 > docker-machine create node1
+
+### Overlay
+* You need to choose it as a drive when creating a **network**:
+> --driver overlay
+* Optional IPSec encryption(AES).
+* For container-to-container traffic inside a single Swarm.
+* Each service can be connected to multiple networks.
+
+### Scaling with Routing Mesh
+It helps with load balancing across the nodes.
+* Routes ingress packets for a service to proper Task.
+* Spans all nodes in Swarm.
+* Uses IPVS from Linux kernel.
+* Two ways this works:
+    * Container-to-container in an Overlay network(Uses VIP).
+    * External traffic incoming to published ports(All nodes listen).
+
+Conts.
+* This is stateless load balancing
+* Is at OSI layer 3(TCP), not layer 4 (DNS).
+* Both limitations can overcome with:
+    * Nginx or LB proxy.
+    * Docker Enterprise Edition (comes with built-in layer 4 LB).
