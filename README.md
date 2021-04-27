@@ -311,3 +311,18 @@ to use this secret (_/run/secrets/[name_of_the_secret]_).
 To use the secrets with Stacks, configure them in the YML
 compose file. Then you can use them in your deployed stacks.
 
+## Swarm App Lifecycle
+
+To update your container in Swarm:
+> docker service update
+
+**Docker healthcare**
+
+_Healthcheck_ command was added in 1.12. You can use with your Dockerfile, 
+Compose file, and Swarm services. Docker engine will exec this command inside
+the container.
+
+Containers can only be in three states: starting, healthy and unhealthy.
+
+This is **NOT** a replacement for external monitoring.
+
