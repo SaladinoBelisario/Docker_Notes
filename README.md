@@ -326,3 +326,22 @@ Containers can only be in three states: starting, healthy and unhealthy.
 
 This is **NOT** a replacement for external monitoring.
 
+## Container Registries
+
+**Docker Hub:**
+
+Is the most popular public registry.
+
+It's really Docker Registry plus lightweight image building.
+
+**Docker Registry:**
+
+A private image registry for your network.
+
+The _de facto_ in private container registries.
+
+No web UI, basic auth only.
+
+Storage supports local and some cloud providers.
+
+
