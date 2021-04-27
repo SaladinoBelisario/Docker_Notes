@@ -271,3 +271,43 @@ Conts.
 * Both limitations can overcome with:
     * Nginx or LB proxy.
     * Docker Enterprise Edition (comes with built-in layer 4 LB).
+  
+### Stacks: Production Grade Swarm
+A new layer of abstraction since docker 1.13, Stack accepts declarative Compose
+files for services, networks and volumes.
+
+We use:
+> docker stack deploy _rather than docker service create_
+
+Stack manages all the objects for us including overlay network per stack.
+
+### Swarm secrets
+What is a secret?
+* Usernames and passwords
+* TLS certificates and keys
+* SSH credentials
+
+Supports generic data (String or binary) up toi 500Kb in size.
+
+Only containers in assigned service(s) can see them.
+
+Secrets are first stored in Swarm then assigned to a service(s).
+
+They look like files in container but are actually in-memory fs.
+
+**Using secrets in Swarm**
+
+To create a secret storage:
+> docker secret create
+
+To assign a container to the secret:
+> docker service create --name [container_name] --secret [secret_storage]
+
+and remember to pass the environment variable to tell to your containes how
+to use this secret (_/run/secrets/[name_of_the_secret]_).
+
+**Secrets with Stacks**
+
+To use the secrets with Stacks, configure them in the YML
+compose file. Then you can use them in your deployed stacks.
+
