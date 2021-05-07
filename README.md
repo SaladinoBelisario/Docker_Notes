@@ -344,4 +344,21 @@ No web UI, basic auth only.
 
 Storage supports local and some cloud providers.
 
+## Docker security
+
+### Cgroups and Namespaces
+These two things are important as far as this linux kernel features are the most 
+important for docker since it allows the functionality of containers in linux.
+
+### Docker Bench
+Scans your configuration, you need to enable kernel permissions.
+
+### Don't run your apps as root
+Always specify USER for running programming languages interpreters and environments,
+this is for ensure your application has been contained correctly even if your
+application has been compromised by a hacker.
+
+### More information about Docker Security
+[Security Recommendations for Docker](https://github.com/BretFisher/ama/issues/17)
+
 
